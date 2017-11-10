@@ -1,0 +1,7 @@
+name: Commerce Product Saleprice
+type: module
+description: 'Commerce Product Saleprice.'
+package: Commerce
+core: 8.x
+dependencies:
+  - commerce
