@@ -8,11 +8,11 @@ use Drupal\commerce_price\Price;
 use Drupal\commerce_price\Resolver\PriceResolverInterface;
 
 /**
- * Class SalepriceResolver.
+ * Class SalePriceResolver.
  *
  * @package Drupal\commerce_product_saleprice\Resolvers
  */
-class SalepriceResolver implements PriceResolverInterface {
+class SalePriceResolver implements PriceResolverInterface {
 
   /**
    * {@inheritdoc}
@@ -32,7 +32,7 @@ class SalepriceResolver implements PriceResolverInterface {
     $sale_price_number = $sale_price->getNumber();
     $sale_price_currency_code = $sale_price->getCurrencyCode();
 
-    if (!$sale_price_number || $sale_price_number == 0) {
+    if (!$sale_price_number) {
       return;
     }
 

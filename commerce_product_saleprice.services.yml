@@ -1,6 +1,6 @@
 services:
   commerce_product_saleprice.saleprice_resolver:
-    class: Drupal\commerce_product_saleprice\Resolvers\SalepriceResolver
+    class: Drupal\commerce_product_saleprice\Resolvers\SalePriceResolver
     arguments: ['@request_stack']
     tags:
       - { name: commerce_price.price_resolver, priority: 600 }
