@@ -1,7 +1,7 @@
-name: Commerce Product Saleprice
+name: 'Commerce Product Saleprice'
 type: module
-description: 'Commerce Product Saleprice.'
-package: Commerce
+description: 'Drupal Commerce 2.x and sale price implementation.'
+package: 'Commerce (contrib)'
 core: 8.x
 dependencies:
-  - commerce
+  - commerce:commerce
