@@ -1,5 +1,5 @@
 {
-  "name": "drupal/commerce_product_saleprice",
+  "name": "gnikolovski/commerce_product_saleprice",
   "description": "Drupal Commerce 2.x and sale price implementation.",
   "type": "drupal-module",
   "homepage": "https://github.com/gnikolovski/commerce_product_saleprice",
