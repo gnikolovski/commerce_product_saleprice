@@ -1,5 +1,5 @@
 {
-    "name": "drupal/config_delete",
+    "name": "gnikolovski/commerce_product_saleprice",
     "description": "Sale price implementation for Drupal Commerce 2.x.",
     "type": "drupal-module",
     "homepage": "https://github.com/gnikolovski/commerce_product_saleprice",
