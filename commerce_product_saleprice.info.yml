@@ -1,7 +1,8 @@
 name: 'Commerce Product Saleprice'
 type: module
-description: 'Drupal Commerce 2.x and sale price implementation.'
+description: 'Sale price implementation for Drupal Commerce 2.x.'
 package: 'Commerce (contrib)'
 core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
   - commerce:commerce

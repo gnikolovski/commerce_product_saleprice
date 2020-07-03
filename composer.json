@@ -1,23 +1,24 @@
 {
-  "name": "gnikolovski/commerce_product_saleprice",
-  "description": "Drupal Commerce 2.x and sale price implementation.",
-  "type": "drupal-module",
-  "homepage": "https://github.com/gnikolovski/commerce_product_saleprice",
-  "authors": [
-    {
-      "name": "Goran Nikolovski",
-      "email": "nikolovski84@gmail.com",
-      "homepage": "http://gorannikolovski.com",
-      "role": "Developer"
+    "name": "drupal/config_delete",
+    "description": "Sale price implementation for Drupal Commerce 2.x.",
+    "type": "drupal-module",
+    "homepage": "https://github.com/gnikolovski/commerce_product_saleprice",
+    "authors": [
+        {
+            "name": "Goran Nikolovski",
+            "email": "goran@gorannikolovski.com",
+            "homepage": "https://gorannikolovski.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/gnikolovski/commerce_product_saleprice/issues",
+        "email": "goran@gorannikolovski.com"
+    },
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/commerce": "^2",
+        "drupal/core": "^8 || ^9"
     }
-  ],
-  "support": {
-    "issues": "https://github.com/gnikolovski/commerce_product_saleprice/issues",
-    "email": "nikolovski84@gmail.com"
-  },
-  "license": "GPL-2.0+",
-  "minimum-stability": "dev",
-  "require": {
-    "drupal/commerce": "^2.0"
-  }
 }
