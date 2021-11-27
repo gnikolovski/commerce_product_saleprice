@@ -5,6 +5,7 @@ namespace Drupal\commerce_product_saleprice\Services;
 use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Class SalepriceService.
@@ -66,7 +67,8 @@ class SalepriceService  {
     ) {
       $stores = $product_variation->getStores();
       $store = reset($stores);
-      $on_sale_until = new DrupalDateTime($product_variation->get($on_sale_until_field)->value, $store->getTimezone());
+      $on_sale_until = new DrupalDateTime($product_variation->get($on_sale_until_field)->value, DateTimeItemInterface::STORAGE_TIMEZONE);
+      $on_sale_until->setTimeZone(new \DateTimeZone($store->getTimezone()));
       $now = new DrupalDateTime('now', $store->getTimezone());
       if ($now > $on_sale_until) {
         return FALSE;

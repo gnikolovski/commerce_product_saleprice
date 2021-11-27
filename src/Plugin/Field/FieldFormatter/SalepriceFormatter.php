@@ -12,6 +12,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -149,7 +150,8 @@ class SalepriceFormatter extends PriceCalculatedFormatter implements ContainerFa
         $purchasable_entity->get($on_sale_until_field)->isEmpty() === FALSE
       ) {
         $store = $context->getStore();
-        $on_sale_until = new DrupalDateTime($purchasable_entity->get($on_sale_until_field)->value, $store->getTimezone());
+        $on_sale_until = new DrupalDateTime($purchasable_entity->get($on_sale_until_field)->value, DateTimeItemInterface::STORAGE_TIMEZONE);
+        $on_sale_until->setTimeZone(new \DateTimeZone($store->getTimezone()));
         $on_sale_until = $on_sale_until->format('d-m-Y H:i');
       }
 
