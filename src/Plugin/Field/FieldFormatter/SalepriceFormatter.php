@@ -155,6 +155,7 @@ class SalepriceFormatter extends PriceCalculatedFormatter implements ContainerFa
 
       $elements[0] = [
         '#theme' => 'commerce_product_saleprice',
+        '#view_mode' => $this->viewMode,
         '#price' => $this->currencyFormatter->format($resolved_price->getNumber(), $resolved_price->getCurrencyCode(), $options),
         '#original_price' => $this->currencyFormatter->format($original_price->getNumber(), $original_price->getCurrencyCode(), $options),
         '#savings_number' => $this->currencyFormatter->format($savings_price->getNumber(), $savings_price->getCurrencyCode(), $options),

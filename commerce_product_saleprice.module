@@ -29,6 +29,7 @@ function commerce_product_saleprice_theme($existing, $type, $theme, $path) {
   return [
     'commerce_product_saleprice' => [
       'variables' => [
+        'view_mode' => NULL,
         'price' => NULL,
         'original_price' => NULL,
         'savings_number' => NULL,
@@ -40,4 +41,13 @@ function commerce_product_saleprice_theme($existing, $type, $theme, $path) {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function commerce_product_saleprice_theme_suggestions_commerce_product_saleprice_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['view_mode'])) {
+    $suggestions[] = 'commerce_product_saleprice__' . $variables['view_mode'];
+  }
 }
