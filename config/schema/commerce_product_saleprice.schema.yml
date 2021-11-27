@@ -1,0 +1,13 @@
+commerce_product_saleprice.settings:
+  type: config_object
+  label: 'Sale price'
+  mapping:
+    saleprice_field:
+      type: string
+      label: 'Saleprice field'
+    on_sale_field:
+      type: string
+      label: 'On sale field'
+    on_sale_until_field:
+      type: string
+      label: 'On sale until'

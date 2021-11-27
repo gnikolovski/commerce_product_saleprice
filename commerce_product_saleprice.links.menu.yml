@@ -1,0 +1,5 @@
+commerce_product_saleprice.settings:
+  title: 'Sale price'
+  parent: commerce.configuration
+  route_name: commerce_product_saleprice.settings
+  description: 'Configure your Sale Price related settings here.'

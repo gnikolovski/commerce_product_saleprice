@@ -1,0 +1,7 @@
+commerce_product_saleprice.settings:
+  path: '/admin/commerce/config/sale-price'
+  defaults:
+    _title: 'Sale price'
+    _form: 'Drupal\commerce_product_saleprice\Form\SettingsForm'
+  requirements:
+    _permission: 'access commerce product saleprice administration pages'

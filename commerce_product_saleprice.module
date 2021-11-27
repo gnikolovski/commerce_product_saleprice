@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Main hooks and functions for Commerce Product Saleprice.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function commerce_product_saleprice_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.commerce_product_saleprice':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Sale price implementation for Drupal Commerce 2.x.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function commerce_product_saleprice_theme($existing, $type, $theme, $path) {
+  return [
+    'commerce_product_saleprice' => [
+      'variables' => [
+        'price' => NULL,
+        'original_price' => NULL,
+        'savings_number' => NULL,
+        'savings_percentage' => NULL,
+        'show_savings_number' => NULL,
+        'show_savings_percentage' => NULL,
+        'on_sale' => NULL,
+        'on_sale_until' => NULL,
+      ],
+    ],
+  ];
+}

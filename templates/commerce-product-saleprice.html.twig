@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Default saleprice template.
+ *
+ * Available variables:
+ * - price
+ * - original_price
+ * - savings_number
+ * - savings_percentage
+ * - show_savings_number
+ * - show_savings_percentage
+ * - on_sale
+ * - on_sale_until
+ *
+ * @ingroup themeable
+ */
+#}
+{% if on_sale %}
+  <div class="price-box">
+    <div class="old-price">
+      <span class="price-label">{% trans %}Old price:{% endtrans %}</span>
+      <span class="price-number">{{ original_price }}</span>
+    </div>
+    <div class="price">
+      <span class="price-label">{% trans %}Price:{% endtrans %}</span>
+      <span class="price-number">{{ price }}</span>
+    </div>
+    {% if show_savings_number %}
+      <div class="savings">
+        <span class="savings-label">{% trans %}You save:{% endtrans %}</span>
+        <span class="savings-number">{{ savings_number }}</span>
+      </div>
+    {% endif %}
+    {% if show_savings_percentage %}
+      <div class="savings">
+        <span class="savings-label">{% trans %}You save:{% endtrans %}</span>
+        <span class="savings-number">{{ savings_percentage }}%</span>
+      </div>
+    {% endif %}
+    {% if on_sale_until %}
+      <div class="sale-info">
+        <span class="sale-info-label">{% trans %}On sale until:{% endtrans %}</span>
+        <span class="sale-info-date">{{ on_sale_until }}</span>
+      </div>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="price-box">
+    <div class="price">
+      <span class="price-label">{% trans %}Price:{% endtrans %}</span>
+      <span class="price-number">{{ original_price }}</span>
+    </div>
+  </div>
+{% endif %}
