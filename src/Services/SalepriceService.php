@@ -8,9 +8,9 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
- * Class SalepriceService.
+ * Defines the Sale price service class.
  */
-class SalepriceService  {
+class SalepriceService {
 
   /**
    * The module config.

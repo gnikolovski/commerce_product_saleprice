@@ -9,7 +9,7 @@ use Drupal\commerce_product_saleprice\Services\SalepriceService;
 use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
- * Class SalepriceResolver.
+ * Defines the Sale price resolver class.
  *
  * @package Drupal\commerce_product_saleprice\Resolvers
  */
