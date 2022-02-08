@@ -1,4 +1,4 @@
-[![Test](https://github.com/gnikolovski/commerce_product_saleprice/actions/workflows/test.yml/badge.svg)](https://github.com/gnikolovski/commerce_product_saleprice/actions/workflows/test.yml)
+[![Test](https://github.com/gnikolovski/commerce_product_saleprice/actions/workflows/test.yml/badge.svg?branch=8.x-2.x)](https://github.com/gnikolovski/commerce_product_saleprice/actions/workflows/test.yml)
 
 CONTENTS OF THIS FILE
 ---------------------
