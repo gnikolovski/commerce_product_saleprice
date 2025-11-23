@@ -1,6 +1,6 @@
 name: 'Commerce Product Saleprice'
 type: module
-description: 'Sale price implementation for Drupal Commerce 2.x.'
+description: 'Sale price implementation for Drupal Commerce.'
 package: 'Commerce (contrib)'
 core_version_requirement: ^10 || ^11
 configure: commerce_product_saleprice.settings

@@ -15,7 +15,7 @@ function commerce_product_saleprice_help($route_name, RouteMatchInterface $route
     case 'help.page.commerce_product_saleprice':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Sale price implementation for Drupal Commerce 2.x.') . '</p>';
+      $output .= '<p>' . t('Sale price implementation for Drupal Commerce.') . '</p>';
       return $output;
 
     default:
