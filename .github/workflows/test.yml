@@ -1,9 +1,9 @@
 name: Test
 on:
   push:
-    branches: [ 8.x-2.x ]
+    branches: [ 8.x-2.x, 3.0.x ]
   pull_request:
-    branches: [ 8.x-2.x ]
+    branches: [ 8.x-2.x, 3.0.x ]
 jobs:
   testing:
     name: Drupal ${{ matrix.drupal-core }} - PHP ${{ matrix.php-versions }}
@@ -11,17 +11,46 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        drupal-core: ['9.3.x', '9.4.x']
-        php-versions: ['7.4', '8.0']
+        drupal-core: ['9.3.x', '9.4.x', '10.2.x', '10.3.x', '11.0.x']
+        php-versions: ['7.4', '8.0', '8.1', '8.2', '8.3']
+        exclude:
+          - drupal-core: '10.2.x'
+            php-versions: '7.4'
+          - drupal-core: '10.2.x'
+            php-versions: '8.0'
+          - drupal-core: '10.3.x'
+            php-versions: '7.4'
+          - drupal-core: '10.3.x'
+            php-versions: '8.0'
+          - drupal-core: '11.0.x'
+            php-versions: '7.4'
+          - drupal-core: '11.0.x'
+            php-versions: '8.0'
+          - drupal-core: '11.0.x'
+            php-versions: '8.1'
+          - drupal-core: '11.0.x'
+            php-versions: '8.2'
+          - drupal-core: '9.3.x'
+            php-versions: '8.1'
+          - drupal-core: '9.3.x'
+            php-versions: '8.2'
+          - drupal-core: '9.3.x'
+            php-versions: '8.3'
+          - drupal-core: '9.4.x'
+            php-versions: '8.1'
+          - drupal-core: '9.4.x'
+            php-versions: '8.2'
+          - drupal-core: '9.4.x'
+            php-versions: '8.3'
     steps:
       - name: Checkout Drupal core
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: drupal/drupal
           ref: ${{ matrix.drupal-core }}
 
       - name: Checkout module
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/commerce_product_saleprice
 
@@ -33,10 +62,10 @@ jobs:
 
       - name: Get composer cache directory
         id: composercache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
