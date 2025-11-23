@@ -5,43 +5,77 @@ on:
   pull_request:
     branches: [ 8.x-2.x, 3.0.x ]
 jobs:
-  testing:
+  testing-drupal-9:
     name: Drupal ${{ matrix.drupal-core }} - PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/8.x-2.x' || github.base_ref == '8.x-2.x'
     strategy:
       fail-fast: false
       matrix:
-        drupal-core: ['9.3.x', '9.4.x', '10.2.x', '10.3.x', '11.0.x']
-        php-versions: ['7.4', '8.0', '8.1', '8.2', '8.3']
+        drupal-core: ['9.3.x', '9.4.x']
+        php-versions: ['7.4', '8.0']
+    steps:
+      - name: Checkout Drupal core
+        uses: actions/checkout@v4
+        with:
+          repository: drupal/drupal
+          ref: ${{ matrix.drupal-core }}
+
+      - name: Checkout module
+        uses: actions/checkout@v4
+        with:
+          path: modules/commerce_product_saleprice
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: none
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Drupal core dependencies
+        run: |
+          composer --no-interaction --no-progress --prefer-dist --optimize-autoloader install
+
+      - name: Install module dependencies
+        run: |
+          composer --no-interaction --no-progress require \
+            drupal/commerce
+
+      - name: Install Coder module
+        run: |
+          composer --dev --no-interaction --no-progress require \
+            drupal/coder:8.3.13
+
+      - name: Check coding standards
+        run: |
+          ./vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
+          ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/commerce_product_saleprice
+
+  testing-drupal-10-11:
+    name: Drupal ${{ matrix.drupal-core }} - PHP ${{ matrix.php-versions }}
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/3.0.x' || github.base_ref == '3.0.x'
+    strategy:
+      fail-fast: false
+      matrix:
+        drupal-core: ['10.2.x', '10.3.x', '11.0.x']
+        php-versions: ['8.1', '8.2', '8.3']
         exclude:
-          - drupal-core: '10.2.x'
-            php-versions: '7.4'
-          - drupal-core: '10.2.x'
-            php-versions: '8.0'
-          - drupal-core: '10.3.x'
-            php-versions: '7.4'
-          - drupal-core: '10.3.x'
-            php-versions: '8.0'
-          - drupal-core: '11.0.x'
-            php-versions: '7.4'
-          - drupal-core: '11.0.x'
-            php-versions: '8.0'
           - drupal-core: '11.0.x'
             php-versions: '8.1'
           - drupal-core: '11.0.x'
             php-versions: '8.2'
-          - drupal-core: '9.3.x'
-            php-versions: '8.1'
-          - drupal-core: '9.3.x'
-            php-versions: '8.2'
-          - drupal-core: '9.3.x'
-            php-versions: '8.3'
-          - drupal-core: '9.4.x'
-            php-versions: '8.1'
-          - drupal-core: '9.4.x'
-            php-versions: '8.2'
-          - drupal-core: '9.4.x'
-            php-versions: '8.3'
     steps:
       - name: Checkout Drupal core
         uses: actions/checkout@v4
